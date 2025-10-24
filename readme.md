@@ -1,4 +1,4 @@
-# Seabirds
+# Seabirds Detection
 
 <!--- 
 Todo:
@@ -43,7 +43,7 @@ All available settings are shown on the first page of the GUI.
 - **Output Directory**
 
 #### Optional Settings 
-Change here!!!!
+<!-- Change here!!!! -->
 - **Extract detected segments** 
 
   Option to export the wav files of the segments that were detected during the  detection and classification procedure. If we want to extract them, we just check the corresponding checkbox.
@@ -64,15 +64,15 @@ processing units that the CPU in the system running the gui has. By default, the
 
 After selecting all the desired directories and parameters, RUN button will become available:
 
-![ready](Images/ready.png)
+<!-- ![ready](Images/ready.png) -->
 
 By clicking run, next screen of the GUI will be shown, where you can initially see the parameters that will be used for the analysis, and when the procedure starts, you can follow the execution of the algorithm (by reading the log as execution proceeds), or Cancel it if desired.
 
-![run](Images/run.png)
+<!-- ![run](Images/run.png) -->
 
 When the execution reaches the end (all input files have been processed), the results screen is shown, where you can see the raven compatible detections table that is also exported in the output/results folder.
 
-![results](Images/results.png)
+<!-- ![results](Images/results.png) -->
 
 ### Results
 
@@ -91,4 +91,4 @@ In the corresponding output folder, you can find:
 - **Analysis_report_XXXXXX_XXXXXX.txt**: A report of the analysis which contains all the important information about the parameters used, the files analyzed, and the exported files.
 
 
-> :warning: Important note: In case you re-run the algorithm with the same input folder (e.g. with a different probability threshold), all previous exported segments will be deleted and only the new ones will be kept. The rest of the files won’t be deleted.
+> ⚠️ Important note: In case you re-run the algorithm with the same input folder (e.g. with a different probability threshold), all previous exported segments will be deleted and only the new ones will be kept. The rest of the files won’t be deleted.

@@ -677,7 +677,8 @@ class Ui_MW(object):
 
     def export_xlsx(self):
         import os
-        fname = f'{self.pathOUT.toPlainText()}/Detections_table.xlsx'
+        # fname = f'{self.pathOUT.toPlainText()}/Detections_table.xlsx'
+        fname = os.path.join(self.pathOUT.toPlainText(), 'Detections_table.xlsx')
         i=1
         if os.path.exists(fname):
             fname = fname.replace(".xlsx", f"_{i}.xlsx")
@@ -690,7 +691,8 @@ class Ui_MW(object):
         
     def export_txt(self):
         import os
-        fname = f'{self.pathOUT.toPlainText()}/Detections_table.txt'
+        # fname = f'{self.pathOUT.toPlainText()}/Detections_table.txt'
+        fname = os.path.join(self.pathOUT.toPlainText(), 'Detections_table.txt')
         i=1
         if os.path.exists(fname):
             fname = fname.replace(".txt", f"_{i}.txt")
@@ -721,7 +723,8 @@ class Ui_MW(object):
     def create_out_subfolders(self, pathOUT):
         out_subfolders = ["Scopoli", "Yelkouan"]
         for className in out_subfolders:
-            subf = f"{pathOUT}/{className}" 
+            # subf = f"{pathOUT}/{className}" 
+            subf = os.path.join(pathOUT, className)
             if not os.path.exists(subf):
                 os.makedirs(subf)
             else:
@@ -750,7 +753,8 @@ class Ui_MW(object):
         self.pathIN_2.setText(pathIN)
         cwd = os.getcwd().replace("\\", "/")
         self.df = self.df_orig
-        if len(glob.glob(f"{self.pathOUT.toPlainText()}\\detections\\*.csv"))<1 or self.df_orig.empty:
+        # if len(glob.glob(f"{self.pathOUT.toPlainText()}\\detections\\*.csv"))<1 or self.df_orig.empty:
+        if len(glob.glob(os.path.join(self.pathOUT.toPlainText(), 'detections', '*.csv')))<1 or self.df_orig.empty:
             self.results.setPlainText("No instances found.")
             self.results.show()
             self.results.setReadOnly(True)
@@ -774,6 +778,9 @@ class Ui_MW(object):
 
     
     def export_analysis_report(self, dt0_1, dt1_1, pathIN, probabilityThreshold, cpus_used, all_data, analysis_files):
+        print('--------')
+        print(all_data)
+        print('--------')
        
         Npositives_Scopoli, Npositives_Yelkouan, Npositives_Overlap = [sum(all_data['class'] == cl) for cl in ["Scopoli", "Yelkouan", "Overlap"]] 
 
@@ -831,8 +838,11 @@ class Ui_MW(object):
         # df = pd.DataFrame()        
         pool=Pool(self.cpus)
                
-        if not os.path.exists(f"{folderOUT}\\detections"):
-            os.makedirs(f"{folderOUT}\\detections")
+        # if not os.path.exists(f"{folderOUT}\\detections"):
+        #     os.makedirs(f"{folderOUT}\\detections")
+
+        if not os.path.exists(os.path.join(folderOUT, 'detections')):
+            os.makedirs(os.path.join(folderOUT, 'detections'))
        
 
         dt0 = datetime.datetime.now()
@@ -856,7 +866,10 @@ class Ui_MW(object):
 
 
         self.df_orig = pd.DataFrame()
-        for csv_file in glob.glob(f"{folderOUT}\\detections\\*.csv"):
+        print(os.path.join(folderOUT, 'detections', '*.csv'))
+        # for csv_file in glob.glob(f"{folderOUT}\\detections\\*.csv"):
+        for csv_file in glob.glob(os.path.join(folderOUT, 'detections', '*.csv')):
+            print('csv_file:', csv_file)
             if self.df_orig.empty:
                 self.df_orig = pd.read_csv(csv_file)
             else:
@@ -864,7 +877,8 @@ class Ui_MW(object):
 
         analysis_report = self.export_analysis_report(dt0_1, dt1_1, folderIN, probThresh, self.cpus, self.df_orig, self.files)
 
-        with open(f"{folderOUT}/Analysis_report_{tmstmp_1}.txt", "w+") as fout:
+        # with open(f"{folderOUT}/Analysis_report_{tmstmp_1}.txt", "w+") as fout:
+        with open(os.path.join(folderOUT, f"Analysis_report_{tmstmp_1}.txt"), "w+") as fout:
             fout.write(analysis_report)
 
         if True:
@@ -880,7 +894,8 @@ class Ui_MW(object):
     
         if remove_intermediate_csv:
             try:
-                for csv_file in glob.glob(f"{folderOUT}\\detections\\*.csv"):
+                # for csv_file in glob.glob(f"{folderOUT}\\detections\\*.csv"):
+                for csv_file in glob.glob(os.path.join(folderOUT, 'detections', '*.csv')):
                     os.remove(csv_file)
                 
                 os.rmdir(f"{folderOUT}\\detections")
@@ -896,7 +911,8 @@ class MyWin(QtWidgets.QMainWindow, Ui_MW):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         try:
-            self.setWindowIcon(QtGui.QIcon('./resources/gui_icons/forth_disk.png'))
+            # self.setWindowIcon(QtGui.QIcon('./resources/gui_icons/forth_disk.png'))
+            self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.abspath("."), 'resources', 'gui_icons', 'forth_disk.png')))
         except:
             pass
     def mousePressEvent(self, event):                                 # +
