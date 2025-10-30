@@ -10,7 +10,7 @@ Todo:
 
 ## Installation
 
-1. Create a new `python 3.9` environment.
+1. Create a new `python 3.8` environment.
 
 2. Install required packages. 
 
