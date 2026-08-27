@@ -7,6 +7,9 @@ Todo:
 3. Mention [konpsar](https://github.com/konpsar) as contributor
 4. Maybe add license
 --->
+This algorithm is a DNN classifier specialized in the acoustic detection of Scopoli and Yelkouan calls.
+The interested user can interact with this tool through a Graphical User Interface that runs in python. 
+The classifier is based on the pre-trained weights and architecture of the YAMNet network.
 
 ## Installation
 
