@@ -98,8 +98,8 @@ In the corresponding output folder, you can find:
   - In case you have selected to also export wav audio files for each detection segment, a folder `extracted_segments` where all the segments that have been detected and classified as gunshots are saved in .wav format.
 
   - In case you haven’t selected to export separated Raven compatible files for each input recording:
-    - `Results_raven.txt`: Detections table compatible with Raven
-    - `Results_raven.xlsx`: Detections table in an Excel file format
+    - `Results.txt`: Detections table compatible with Raven
+    - `Results.xlsx`: Detections table in an Excel file format
 
   - In case you have selected to export separated Raven compatible files for each input recording, one more subfolder will be created with the title `separated_results`, where all the exported Raven compatible files will be extracted.
 
