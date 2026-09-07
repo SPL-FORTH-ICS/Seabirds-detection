@@ -7,9 +7,15 @@ Todo:
 3. Mention [konpsar](https://github.com/konpsar) as contributor
 4. Maybe add license
 --->
-This algorithm is a DNN classifier specialized in the acoustic detection of Scopoli and Yelkouan calls.
-The interested user can interact with this tool through a Graphical User Interface that runs in python. 
-The classifier is based on the pre-trained weights and architecture of the YAMNet network.
+This algorithm is a DNN classifier specialized in the acoustic detection of Scopoli’s and Yelkouan shearwater calls. The user can interact with this tool through a Graphical User Interface that runs in python. The classifier is based on the pre-trained weights and architecture of the YAMNet network and an annotated dataset of shearwater calls from Malta and Croatia. The duration of stereo audio content in hours used for training the DNN model: 
+
+| Origin | Scopoli| Yelkouan | Noise |
+|----------|----------|----------|---------|
+| Malta    | 1.79    | 1.76    | 8.12    |
+| Croatia    | 0.84   | 0.75    | 3.50    |
+| External    | 0.00    | 0.00    | 4.97    |
+| *Total*  | 2.63    | 2.51   | 16.60  |
+
 
 ## Installation
 
