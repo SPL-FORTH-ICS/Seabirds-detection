@@ -14,7 +14,7 @@ This algorithm is a DNN classifier specialized in the acoustic detection of Scop
 | Malta    | 1.79    | 1.76    | 8.12    |
 | Croatia    | 0.84   | 0.75    | 3.50    |
 | External    | 0.00    | 0.00    | 4.97    |
-| *Total*  | 2.63    | 2.51   | 16.60  |
+| **Total**  | **2.63** | **2.51** | **16.60**  |
 
 
 ## Installation
@@ -61,15 +61,21 @@ All available settings are shown on the first page of the GUI.
 
   Option to export the raven compatible results files one per file, instead of one per analysis. If we want to extract one raven compatible .txt and .xlsx per input recording, then we can just check the corresponding checkbox. 
 
-- **Cores to use**
+- **Parallelization**
 
-  Number of CPUs to be used. For example, if we want to engage 4 CPUs, we can 
-type 4 or change the spinbox value through the up/down buttons. The available  values is 1 through <MAX_CPUS> where <MAX_CPUS> is the maximum 
-processing units that the CPU in the system running the gui has. By default, the 75% of the available CPUs will be used. 
+This setting affect the number of CPUs that are used. "No" limits computation to only 1 core. "Mid" will use half the  cores and "Full"" will attempt to use all the available cores.
 
 - **Probability threshold**
 
-  Classifier's probability threshold. After classification, each event is given a probability of being a gunshot. If the probability of an event is greater or equal to this threshold then the event will be considered as gunshot. For example, if we want to set a probability threshold equal to 0.3, we can type 0.3 or change the spinbox value through the up/down buttons. This parameter can take values from 0.01 to 0.99. By default, a probability threshold equal to 0.5will be used.
+Classifier's probability threshold has an important effect on the detection performance. After detection, each event is given a probability of being a respective shearwater species call. If the probability of an event is greater or equal to this threshold then the event will be considered a shearwater call in the respective species class (Scopoli’s or Yelkouan shearwater). For example, if we want to set a probability threshold equal to 0.3, we can type 0.3 or change the spinbox value through the up/down buttons. This parameter can take values from 0.01 to 0.99. By default, a probability threshold equal to 0.5 will be used. On an annotated test set (22 5-min recordings, half with noise class and half with shearwater classes), the following true and false detection rates (TDR and FDR) were obtained at the three different thresholds of _p_ = 0.5, _p_ = 0.6 and _p_ = 0.75: 
+
+| Detection rate | _p_ = 0.5| _p_ = 0.6 | _p_ = 0.75 |
+|----------|----------|----------|---------|
+| Scopoli (TDR) | 94.0%   | 90.5%    | 88.7%    |
+| Yelkouan (TDR) | 64.8%  | 58.1%    | 53.2%    |
+| FDR | 1.60%  | 0.66%    | 0.45%    |
+| Yelkouan identified as Scopoli | 5.5% | 3.4% | 2.6%  |
+| Scopoli identified as Yelkouan | 4.1% | 2.6% | 1.5%  |
 
 After selecting all the desired directories and parameters, RUN button will become available:
 
